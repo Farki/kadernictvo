@@ -1,0 +1,100 @@
+$nav-item-margin: 2rem;
+
+.js_smart-scroll {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.scrolled-down {
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.scrolled-up {
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar {
+  #logo {
+    font-family: $font-family-logo;
+    color: $white;
+    font-size: 3rem;
+    @include media("<=tablet") {
+      font-size: 2rem
+    }
+    @include media("<=phone") {
+      font-size: 1.5rem
+    }
+  }
+
+  &.dark-bg {
+    background: rgba(50,50,50,0.7);
+  }
+
+  #main_nav {
+    text-align: center;
+  }
+
+  .navbar-toggler {
+    border-color: $white !important;
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.9)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+  }
+
+  .navbar-collapse {
+    @include media("<tablet") {
+      background-color: $white;
+    }
+
+    .nav-item {
+      position: relative;
+
+      a {
+        font-size: 1.5rem;
+        font-family: 'Playfair Display', serif;
+        margin: 0 $nav-item-margin;
+        color: $white;
+        @include media("<tablet") {
+          color: $dark;
+        }
+
+        &:before {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+      }
+
+      &.active {
+        a {
+          color: $white;
+          @include media("<tablet") {
+            color: $secondary;
+          }
+
+          &:before {
+            position: absolute;
+            content: "";
+            background: $white;
+            width: calc(100% - 2 * #{$nav-item-margin});
+            height: 2px;
+            bottom: 0;
+            left: 2rem;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+            opacity: 1;
+            transform: scaleX(1);
+          }
+        }
+      }
+    }
+  }
+}
+
